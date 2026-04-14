@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 
@@ -14,6 +14,25 @@ export default function Inventario({ inventarioInicial }) {
   })
 
   const router = useRouter()
+
+  useEffect(() => {
+        const canal = supabase
+        .channel('inventario-realtime')
+        .on('postgres_changes', 
+        { event: '*', schema: 'public', table: 'inventario' },
+        (payload) => {
+            if (payload.eventType === 'INSERT') {
+            setInventario(prev => [...prev, payload.new])
+            }
+            if (payload.eventType === 'DELETE') {
+            setInventario(prev => prev.filter(item => item.id !== payload.old.id))
+            }
+        }
+        )
+        .subscribe()
+
+            return () => supabase.removeChannel(canal)
+    }, [])
 
   const handleAlta = async () => {
     const { data, error } = await supabase
