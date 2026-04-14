@@ -9,8 +9,8 @@ export default async function Home() {
     <main className="min-h-screen bg-gray-100">
       {/* Header */}
       <header className="bg-blue-800 text-white p-6 shadow-lg">
-        <h1 className="text-3xl font-bold">📦 Gestión de Inventario</h1>
-        <p className="text-blue-200 mt-1">Incubadora - Aula Informática</p>
+        <h1 className="text-3xl font-bold">Gestión de Inventario</h1>
+        <p className="text-blue-200 mt-1">Cámara del Comercio Linares</p>
       </header>
 
       <div className="p-8">
