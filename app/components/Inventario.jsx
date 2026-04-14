@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 
 export default function Inventario({ inventarioInicial }) {
@@ -12,6 +13,8 @@ export default function Inventario({ inventarioInicial }) {
     descripcion: '', ubicacion: '', cantidad: ''
   })
 
+  const router = useRouter()
+
   const handleAlta = async () => {
     const { data, error } = await supabase
       .from('Inventario')
@@ -22,6 +25,7 @@ export default function Inventario({ inventarioInicial }) {
       setForm({ numero_articulo: '', hardware: '', fabricante: '',
         descripcion: '', ubicacion: '', cantidad: '' })
       setMostrarFormulario(false)
+      router.refresh()
     }
   }
 
@@ -33,6 +37,7 @@ export default function Inventario({ inventarioInicial }) {
     if (!error) {
       setInventario(inventario.filter(item => item.id !== id))
       setConfirmarBaja(null)
+      router.refresh()
     }
   }
 
