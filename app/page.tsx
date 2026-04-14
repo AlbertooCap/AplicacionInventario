@@ -10,7 +10,7 @@ export default async function Home() {
       {/* Header */}
       <header className="bg-blue-800 text-white p-6 shadow-lg">
         <h1 className="text-3xl font-bold">Gestión de Inventario</h1>
-        <p className="text-blue-200 mt-1">Cámara del Comercio Linares</p>
+        <p className="text-blue-200 mt-1">Cámara del Comercio Linares 2026</p>
       </header>
 
       <div className="p-8">
