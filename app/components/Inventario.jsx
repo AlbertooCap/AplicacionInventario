@@ -139,15 +139,15 @@ export default function Inventario({ inventarioInicial }) {
           <div className="bg-blue-700 text-white p-4">
             <h2 className="text-xl font-bold">Listado de Inventario</h2>
           </div>
-          <table className="w-full">
+          <table className="w-full md:table-fixed border-collapse">
             <thead className="bg-blue-50">
-              <tr>
-                <th className="p-3 text-left text-blue-800 font-semibold">Nº Artículo</th>
-                <th className="p-3 text-left text-blue-800 font-semibold">Hardware</th>
-                <th className="p-3 text-left text-blue-800 font-semibold">Ubicación</th>
-                <th className="p-3 text-left text-blue-800 font-semibold">Acciones</th>
-              </tr>
-            </thead>
+                <tr>
+                  <th className="p-3 text-left text-blue-800 font-semibold w-36">Nº Artículo</th>
+                  <th className="p-3 text-left text-blue-800 font-semibold w-28">Hardware</th>
+                  <th className="p-3 text-left text-blue-800 font-semibold w-64">Ubicación</th>
+                  <th className="p-3 text-left text-blue-800 font-semibold w-24">Acciones</th>
+                </tr>
+          </thead>
             <tbody>
               {inventario.map((item, index) => (
                 <tr key={item.id} className={index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
@@ -155,24 +155,24 @@ export default function Inventario({ inventarioInicial }) {
                       <td className="p-3">{item.hardware}</td>
                       <td className="p-3">{item.ubicacion}</td>
                       <td className="p-3">
-                        {confirmarBaja === item.id ? (
-                          <div className="flex gap-2">
-                            <button onClick={() => handleBaja(item.id)}
-                              className="bg-red-600 hover:bg-red-700 text-white text-sm px-3 py-1 rounded-lg font-bold">
-                              ✓ Confirmar
-                            </button>
-                            <button onClick={() => setConfirmarBaja(null)}
-                              className="bg-gray-400 hover:bg-gray-500 text-white text-sm px-3 py-1 rounded-lg">
-                              ✕
-                            </button>
-                          </div>
-                        ) : (
-                          <button onClick={() => setConfirmarBaja(item.id)}
-                            className="bg-red-100 hover:bg-red-200 text-red-700 text-sm px-3 py-1 rounded-lg font-bold">
-                            Dar de Baja
-                          </button>
-                        )}
-                      </td>
+                            {confirmarBaja === item.id ? (
+                              <div className="flex flex-col gap-1">
+                                <button onClick={() => handleBaja(item.id)}
+                                  className="bg-red-600 hover:bg-red-700 text-white text-xs px-2 py-1 rounded-lg font-bold">
+                                  ✓
+                                </button>
+                                <button onClick={() => setConfirmarBaja(null)}
+                                  className="bg-gray-400 hover:bg-gray-500 text-white text-xs px-2 py-1 rounded-lg">
+                                  ✕
+                                </button>
+                              </div>
+                            ) : (
+                              <button onClick={() => setConfirmarBaja(item.id)}
+                                className="bg-red-100 hover:bg-red-200 text-red-700 text-xs px-2 py-1 rounded-lg font-bold">
+                                Baja
+                              </button>
+                            )}
+                        </td>
               </tr>
               ))}
             </tbody>
