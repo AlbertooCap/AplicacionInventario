@@ -144,10 +144,7 @@ export default function Inventario({ inventarioInicial }) {
               <tr>
                 <th className="p-3 text-left text-blue-800 font-semibold">Nº Artículo</th>
                 <th className="p-3 text-left text-blue-800 font-semibold">Hardware</th>
-                <th className="p-3 text-left text-blue-800 font-semibold hidden md:table-cell">Fabricante</th>
-                <th className="p-3 text-left text-blue-800 font-semibold hidden md:table-cell">Descripción</th>
                 <th className="p-3 text-left text-blue-800 font-semibold">Ubicación</th>
-                <th className="p-3 text-left text-blue-800 font-semibold hidden md:table-cell">Cantidad</th>
                 <th className="p-3 text-left text-blue-800 font-semibold">Acciones</th>
               </tr>
             </thead>
@@ -156,18 +153,7 @@ export default function Inventario({ inventarioInicial }) {
                 <tr key={item.id} className={index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
                       <td className="p-3 font-mono text-blue-700">{item.numero_articulo}</td>
                       <td className="p-3">{item.hardware}</td>
-                      <td className="p-3 hidden md:table-cell">{item.fabricante}</td>
-                      <td className="p-3 hidden md:table-cell">{item.descripcion}</td>
                       <td className="p-3">{item.ubicacion}</td>
-                      <td className="p-3 hidden md:table-cell">
-                        <span className={`px-2 py-1 rounded-full text-sm font-bold ${
-                          item.cantidad > 0
-                            ? 'bg-green-100 text-green-700'
-                            : 'bg-red-100 text-red-700'
-                        }`}>
-                          {item.cantidad}
-                        </span>
-                      </td>
                       <td className="p-3">
                         {confirmarBaja === item.id ? (
                           <div className="flex gap-2">
